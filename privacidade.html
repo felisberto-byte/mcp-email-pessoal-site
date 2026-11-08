@@ -20,17 +20,20 @@
 <body>
 <main>
   <h1>Política de Privacidade</h1>
-  <p class="sub">MCP E-mail Pessoal · <a href="./">página inicial</a></p>
+  <p class="sub">MCPs Pessoais do Carlos · <a href="./">página inicial</a></p>
 
   <h2>1. Quem usa</h2>
-  <p>O MCP E-mail Pessoal é um aplicativo de uso exclusivo do seu dono, Carlos Martins. Somente a conta Google
-  do dono é aceita; qualquer outra conta é recusada no login.</p>
+  <p>Os MCPs Pessoais do Carlos (E-mail Pessoal e TickTick Pessoal) são aplicativos de uso exclusivo do seu dono,
+  Carlos Martins. Somente a conta Google do dono é aceita; qualquer outra conta é recusada no login.</p>
 
   <h2>2. Quais dados são acessados</h2>
   <p>Com a autorização do dono, o aplicativo acessa a caixa do Gmail dele pelas permissões
   <code>gmail.modify</code> (ler mensagens e anexos, criar rascunhos, aplicar marcadores, mover para a lixeira
   ou para o spam) e <code>gmail.settings.basic</code> (criar e apagar filtros), além de <code>openid</code> e
   <code>email</code> para confirmar a identidade de quem entra.</p>
+  <p>O TickTick Pessoal usa a conta Google <strong>apenas</strong> para confirmar a identidade (<code>openid</code>
+  e <code>email</code>); ele não acessa o Gmail. As tarefas do TickTick são acessadas com um token pessoal do
+  próprio dono, criado no TickTick.</p>
 
   <h2>3. Como os dados são usados</h2>
   <ul>
@@ -41,11 +44,11 @@
 
   <h2>4. O que fica guardado</h2>
   <ul>
-    <li>A autorização de acesso ao Gmail fica guardada de forma cifrada no Google Cloud Secret Manager.</li>
+    <li>A autorização de acesso ao Gmail e o token do TickTick ficam guardados de forma cifrada no Google Cloud Secret Manager, cada um legível só pelo servidor que o usa.</li>
     <li>As sessões de login ficam no Google Cloud Firestore, apenas como códigos cifrados (hashes), e expiram sozinhas.</li>
     <li>Na limpeza em massa, a prévia guarda no Firestore, por até 10 minutos, a busca e os identificadores das mensagens afetadas, até o dono confirmar.</li>
-    <li>Cada alteração feita na caixa é registrada no log do servidor (operação, identificadores, assunto e destinatários), sem o corpo das mensagens.</li>
-    <li>O conteúdo das mensagens não é armazenado pelo aplicativo.</li>
+    <li>Cada alteração feita na caixa é registrada no log do servidor (operação, identificadores, assunto e destinatários), sem o corpo das mensagens. No TickTick, o log registra operação, identificadores e títulos das tarefas.</li>
+    <li>O conteúdo das mensagens e das tarefas não é armazenado pelos aplicativos.</li>
   </ul>
   <p>Toda a infraestrutura fica em um projeto Google Cloud do próprio dono, na região de São Paulo.</p>
 
@@ -57,7 +60,8 @@
   <h2>6. Como revogar</h2>
   <p>O acesso pode ser cortado a qualquer momento em
   <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>, removendo o
-  aplicativo "MCPs Pessoais do Carlos".</p>
+  aplicativo "MCPs Pessoais do Carlos". O acesso ao TickTick é cortado revogando o token pessoal nas
+  configurações da conta do TickTick.</p>
 
   <footer>Atualizado em 8 de novembro de 2026.</footer>
 </main>
